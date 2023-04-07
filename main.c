@@ -18,27 +18,30 @@ float divide(float a, float b) {
     return a / b;
 }
 
-float squareRoot() {
-    float a;
-    printf("Enter a number: ");
-    scanf("%f", &a);
+float squareRoot(float a) {
     return sqrt(a);
 }
 
-float power() {
-    float a, result;
-    int m;
-    printf("Enter a number: ");
-    scanf("%f", &a);
-    printf("Enter the power: ");
-    scanf("%d", &m);
-    result = pow(a, m);
-    return result;
+float power(float a, int m) {
+    return pow(a, m);
+}
+
+float average() {
+    int count = 0;
+    double total = 0.0, num;
+
+    printf("Enter numbers to calculate average (type 'q' to quit): \n");
+    while (scanf("%lf", &num) == 1) {
+        total += num;
+        count++;
+    }
+
+    return total / count;
 }
 
 int main() {
     float a, b, result;
-    int choice;
+    int choice, m;
 
     printf("Enter two numbers: ");
     scanf("%f%f", &a, &b);
@@ -50,6 +53,7 @@ int main() {
     printf("4. Divide\n");
     printf("5. Square root\n");
     printf("6. Power\n");
+    printf("7. Calculate Average\n");
     scanf("%d", &choice);
 
     switch (choice) {
@@ -70,12 +74,18 @@ int main() {
             printf("Division is %.2f", result);
             break;
         case 5:
-            result = squareRoot();
+            result = squareRoot(a);
             printf("Square root is %.2f", result);
             break;
         case 6:
-            result = power();
+            printf("Enter the power: ");
+            scanf("%d", &m);
+            result = power(a, m);
             printf("Result is %.2f", result);
+            break;
+        case 7:
+            result = average();
+            printf("Average is %.2f", result);
             break;
         default:
             printf("Invalid choice!");
@@ -83,3 +93,4 @@ int main() {
 
     return 0;
 }
+
